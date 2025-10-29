@@ -74,7 +74,7 @@ esac
   cd "$TMPDIR" || exit 8
   [ -f "$SRC_BASE" ] || cp "$SRC_ABS" . || { error "Failed to copy source"; exit 6; }
   sh -c "$BUILD_CMD"
-  build_rc=$?
+  build_rc=$? # ВМЕСТО ЭТОГО if sh -c 
   [ "$build_rc" -eq 0 ] || { error "Compilation failed with exit code $build_rc."; exit 7; }
 )
 
