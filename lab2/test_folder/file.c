@@ -1,11 +1,6 @@
-// &Output: mycppfilename
-#include <iostream>
-
-int main()
+#include <stdio.h>
+// &Output: mycfilename
+int main(void) 
 {
-  for (int i = 0; i < 102313111131321123; i++) {
-		std::cout<< "";
-  }
-  std::cout << "\nhihi world\n";
-  return 0; 
+	printf("\nHello\n");
 }
