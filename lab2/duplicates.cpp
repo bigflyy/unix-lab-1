@@ -3,8 +3,6 @@
 #include <fstream>
 #include <unordered_map>
 #include <openssl/sha.h>
-#include <iomanip>
-#include <sstream>
 
 namespace fs = std::filesystem;
 
@@ -27,10 +25,9 @@ std::string sha1sum(const fs::path& path)
     std::ostringstream result;
     for (unsigned char c : hash)
         result << std::hex << std::setw(2) << std::setfill('0') << (int)c;
-    // std::cout << path << " hash is " << result.str() << "\n";
+    std::cout << path << " hash is " << result.str() << "\n";
 
     return result.str();
-
 }
 
 int main(int argc, char* argv[]){
@@ -54,7 +51,7 @@ int main(int argc, char* argv[]){
             fs::path seen_file_path = seen_files[hash];
             // Если fs_object - уже жесткая ссылка на seen_file
             if (fs::equivalent(seen_file_path, fs_object.path())){
-                std::cout << "Files " << seen_file_path << " and " << fs_object.path() << "are already hard-linked. \n";
+                std::cout << "Files " << seen_file_path << " and " << fs_object.path() << "are already hard-linked.\n";
             }
             else{
                 // Файл-дубликат fs_object заменяется жёсткой ссылкой на файл с таким же хэшем, который мы встречали ранее 
