@@ -6,7 +6,7 @@
             "request": "launch",
             "program": "enter program name, for example ${workspaceFolder}/a.out",
             "args": [
-                "/home/bigfly/unix-lab-1/lab2/test_folder"
+                "/home/bigfly/unix-lab-1/unix-lab-3/test_folder"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -32,7 +32,7 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [
-                "/home/bigfly/unix-lab-1/lab2/test_folder"
+                "/home/bigfly/unix-lab-1/unix-lab-3/test_folder"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
