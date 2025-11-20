@@ -6,7 +6,7 @@ pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond1 = PTHREAD_COND_INITIALIZER;    
 int event_ready = 0; 
 
-int shared_data_value = 0;
+int shared_data = 0;
 
 
 void* provider_thread(void* arg) {
@@ -21,10 +21,10 @@ void* provider_thread(void* arg) {
         }
 
         counter++;
-        shared_data_value = counter; 
+        shared_data = counter; 
         event_ready = 1; 
 
-        printf("Поставщик: инициировано событие %d (данные: %d)\n", counter, shared_data_value);
+        printf("Поставщик: инициировано событие %d (данные: %d)\n", counter, shared_data);
 
         pthread_cond_signal(&cond1); 
         pthread_mutex_unlock(&lock);
@@ -39,7 +39,7 @@ void* consumer_thread(void* arg) {
             pthread_cond_wait(&cond1, &lock); 
         }
 
-        int current_value = shared_data_value; 
+        int current_value = shared_data; 
         event_ready = 0; 
 
         printf("Потребитель: получено событие (данные: %d)\n", current_value);
@@ -53,14 +53,8 @@ int main() {
     pthread_t provider, consumer;
 
     // Создаем потоки
-    if (pthread_create(&provider, NULL, provider_thread, NULL) != 0) {
-        printf("Ошибка при создании потока-поставщика");
-        return 1;
-    }
-    if (pthread_create(&consumer, NULL, consumer_thread, NULL) != 0) {
-        printf("Ошибка при создании потока-потребителя");
-        return 1;
-    }
+    pthread_create(&provider, NULL, provider_thread, NULL);
+    pthread_create(&consumer, NULL, consumer_thread, NULL);
 
     // завершим потоки через 10 секунд
     sleep(10);
