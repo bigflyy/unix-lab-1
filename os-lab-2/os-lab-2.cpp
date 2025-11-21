@@ -1,8 +1,6 @@
 #include <arpa/inet.h>
 #include <signal.h>
 #include <iostream>
-#include <vector>
-#include <set>
 
 // глобальный флаг 
 
@@ -51,7 +49,7 @@ int main() {
     sigaddset(&blockedMask, SIGHUP);
     sigprocmask(SIG_BLOCK, &blockedMask, &origMask);
 
-    std::set<int> clients;
+    int activeClient = -1;
     std::cout << "Server started on port 42424" << std::endl;
 
     while (true) {
@@ -61,9 +59,9 @@ int main() {
         FD_SET(listenSocket, &fds);
         int maxFd = listenSocket; 
 
-        for (int client : clients) {
-            FD_SET(client, &fds);
-            if (client > maxFd) maxFd = client; 
+        if (activeClient != -1) {  // Если есть активный клиент
+            FD_SET(activeClient, &fds);
+            if (activeClient > maxFd) maxFd = activeClient; 
         }
 
         // Ожидание событий
@@ -88,48 +86,39 @@ int main() {
                 perror("accept");
             } else {
                 std::cout << "New connection: " << clientSocket << std::endl;
-                // Закрываем предыдущие соединения (оставляем только одно)
-                for (int client : clients) {
-                    close(client);
-                    std::cout << "Closed previous connection: " << client << std::endl;
+                // Закрываем предыдущее соединение
+                if (activeClient != -1) {  // Если был активный клиент
+                    close(activeClient);
+                    std::cout << "Closed previous connection: " << activeClient << std::endl;
                 }
-                clients.clear();
-                
-                clients.insert(clientSocket);
+
+                activeClient = clientSocket;  // Сохранить нового клиента
                 std::cout << "Active connection: " << clientSocket << std::endl;
             }
         }
 
-        // Проверка данных от клиентов
-        std::vector<int> toRemove;
-        for (int client : clients) {
-            if (FD_ISSET(client, &fds)) {
-                char buffer[1024];
-                ssize_t bytesRead = recv(client, buffer, sizeof(buffer), 0);
-                
-                if (bytesRead > 0) {
-                    std::cout << "Received " << bytesRead 
-                              << " bytes from connection " << client << std::endl;
+        // Проверка данных от клиента
+        if (activeClient != -1 && FD_ISSET(activeClient, &fds)) {  
+            char buffer[1024];
+            ssize_t bytesRead = recv(activeClient, buffer, sizeof(buffer), 0);
+            
+            if (bytesRead > 0) {
+                std::cout << "Received " << bytesRead 
+                          << " bytes from connection " << activeClient << std::endl;
+            } else {
+                if (bytesRead == 0) {
+                    std::cout << "Connection closed by client: " << activeClient << std::endl;
                 } else {
-                    if (bytesRead == 0) {
-                        std::cout << "Connection closed by client: " << client << std::endl;
-                    } else {
-                        perror("recv");
-                    }
-                    close(client);
-                    toRemove.push_back(client);
+                    perror("recv");
                 }
+                close(activeClient);
+                activeClient = -1;  // Обнулить переменную
             }
-        }
-
-        // Удаление закрытых соединений
-        for (int client : toRemove) {
-            clients.erase(client);
         }
     }
     // Завершение работы
-    for (int client : clients) {
-        close(client);
+    if (activeClient != -1) {  // Если есть активный клиент
+        close(activeClient);
     }
     close(listenSocket);
     return 0;
