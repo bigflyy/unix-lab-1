@@ -5,6 +5,7 @@
 #include <set>
 
 // глобальный флаг 
+
 volatile sig_atomic_t wasSigHup = 0;
 
 // установить флаг = 1 (функция обработки сигнала sighup)
