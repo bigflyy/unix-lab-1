@@ -15,7 +15,7 @@ int main() {
     // Создание и настройка сокета
     int listenSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (listenSocket == -1) {
-        perror("socket");
+        std::cout <<"socket";
         return 1;
     }
 
@@ -25,13 +25,13 @@ int main() {
     addr.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(listenSocket, (struct sockaddr*)&addr, sizeof(addr)) == -1) {
-        perror("bind");
+        std::cout <<"bind";
         close(listenSocket);
         return 1;
     }
 
     if (listen(listenSocket, SOMAXCONN) == -1) {
-        perror("listen");
+        std::cout <<"listen";
         close(listenSocket);
         return 1;
     }
@@ -75,7 +75,7 @@ int main() {
                 }
                 continue;
             }
-            perror("pselect");
+            std::cout <<"pselect error";
             break;
         }
 
@@ -83,7 +83,7 @@ int main() {
         if (FD_ISSET(listenSocket, &fds)) {
             int clientSocket = accept(listenSocket, nullptr, nullptr);
             if (clientSocket == -1) {
-                perror("accept");
+                std::cout <<"accept";
             } else {
                 std::cout << "New connection: " << clientSocket << std::endl;
                 // Закрываем предыдущее соединение
@@ -109,7 +109,7 @@ int main() {
                 if (bytesRead == 0) {
                     std::cout << "Connection closed by client: " << activeClient << std::endl;
                 } else {
-                    perror("recv");
+                    std::cout <<"recv";
                 }
                 close(activeClient);
                 activeClient = -1;  // Обнулить переменную
