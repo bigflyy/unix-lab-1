@@ -1,0 +1,1 @@
+savedcmd_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.ko := ld -r -m elf_x86_64 -z noexecstack --build-id=sha1  -T scripts/module.lds -o /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.ko /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.mod.o

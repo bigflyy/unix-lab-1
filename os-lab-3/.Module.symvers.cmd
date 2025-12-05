@@ -1,0 +1,1 @@
+savedcmd_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/Module.symvers -T /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/modules.order -i Module.symvers -e 

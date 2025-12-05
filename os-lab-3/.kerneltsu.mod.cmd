@@ -1,0 +1,1 @@
+savedcmd_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.mod := printf '%s\n'   kerneltsu.o | awk '!x[$$0]++ { print("/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/"$$0) }' > /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.mod
