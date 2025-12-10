@@ -35,13 +35,24 @@ MODULE_INFO(retpoline, "Y");
 
 static const struct modversion_info ____versions[]
 __used __section("__versions") = {
-	{ 0x5b8239ca, "__x86_return_thunk" },
+	{ 0x46b0be46, "single_open" },
+	{ 0x9ec6ca96, "ktime_get_real_ts64" },
+	{ 0xfff5afc, "time64_to_tm" },
+	{ 0xfb2f8a4, "mktime64" },
+	{ 0xc00e2b80, "seq_printf" },
+	{ 0xf0fdf6cb, "__stack_chk_fail" },
+	{ 0xe3e8a148, "proc_remove" },
+	{ 0xc1d9b323, "seq_read" },
+	{ 0x7369f212, "seq_lseek" },
+	{ 0x8e66928c, "single_release" },
 	{ 0xbdfb6dbb, "__fentry__" },
 	{ 0x122c3a7e, "_printk" },
-	{ 0x708cd699, "module_layout" },
+	{ 0x2dbde678, "proc_create" },
+	{ 0x5b8239ca, "__x86_return_thunk" },
+	{ 0xe2fd41e5, "module_layout" },
 };
 
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "D02924230424396A1ADB53E");
+MODULE_INFO(srcversion, "DB428271348A866647D86B8");

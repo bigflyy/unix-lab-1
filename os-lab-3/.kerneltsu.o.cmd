@@ -17,6 +17,7 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/X86_64) \
     $(wildcard include/config/ARM64) \
     $(wildcard include/config/HAVE_ARCH_COMPILER_H) \
+    $(wildcard include/config/CC_HAS_COUNTED_BY) \
     $(wildcard include/config/CC_HAS_ASM_INLINE) \
   include/linux/compiler_attributes.h \
   include/linux/compiler-gcc.h \
@@ -47,6 +48,7 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/TRACE_BRANCH_PROFILING) \
     $(wildcard include/config/PROFILE_ALL_BRANCHES) \
     $(wildcard include/config/OBJTOOL) \
+    $(wildcard include/config/64BIT) \
   arch/x86/include/generated/asm/rwonce.h \
   include/asm-generic/rwonce.h \
   include/linux/kasan-checks.h \
@@ -57,7 +59,6 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/UID16) \
     $(wildcard include/config/ARCH_DMA_ADDR_T_64BIT) \
     $(wildcard include/config/PHYS_ADDR_T_64BIT) \
-    $(wildcard include/config/64BIT) \
     $(wildcard include/config/ARCH_32BIT_USTAT_F_TINODE) \
   include/uapi/linux/types.h \
   arch/x86/include/generated/uapi/asm/types.h \
@@ -177,6 +178,7 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/DYNAMIC_DEBUG) \
     $(wildcard include/config/DYNAMIC_DEBUG_CORE) \
   include/linux/init.h \
+    $(wildcard include/config/MEMORY_HOTPLUG) \
     $(wildcard include/config/HAVE_ARCH_PREL32_RELOCATIONS) \
     $(wildcard include/config/STRICT_KERNEL_RWX) \
     $(wildcard include/config/STRICT_MODULE_RWX) \
@@ -355,6 +357,7 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/DEBUG_PER_CPU_MAPS) \
     $(wildcard include/config/CPUMASK_OFFSTACK) \
   include/linux/bitmap.h \
+  include/linux/cleanup.h \
   include/linux/errno.h \
   include/uapi/linux/errno.h \
   arch/x86/include/generated/uapi/asm/errno.h \
@@ -368,6 +371,8 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
   include/linux/overflow.h \
   include/uapi/linux/string.h \
   include/linux/fortify-string.h \
+    $(wildcard include/config/CC_HAS_KASAN_MEMINTRINSIC_PREFIX) \
+    $(wildcard include/config/GENERIC_ENTRY) \
   include/linux/bitmap-str.h \
   include/linux/atomic.h \
   arch/x86/include/asm/atomic.h \
@@ -413,7 +418,6 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/DEBUG_IRQFLAGS) \
     $(wildcard include/config/TRACE_IRQFLAGS_SUPPORT) \
   include/linux/irqflags_types.h \
-  include/linux/cleanup.h \
   arch/x86/include/asm/irqflags.h \
   arch/x86/include/asm/fpu/types.h \
   arch/x86/include/asm/vmxfeatures.h \
@@ -454,7 +458,6 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/LRU_GEN_STATS) \
     $(wildcard include/config/LRU_GEN_WALKS_MMU) \
     $(wildcard include/config/MEMCG) \
-    $(wildcard include/config/MEMORY_HOTPLUG) \
     $(wildcard include/config/MEMORY_FAILURE) \
     $(wildcard include/config/PAGE_EXTENSION) \
     $(wildcard include/config/DEFERRED_STRUCT_PAGE_INIT) \
@@ -467,10 +470,12 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/PREEMPT_COUNT) \
     $(wildcard include/config/TRACE_PREEMPT_TOGGLE) \
     $(wildcard include/config/PREEMPT_NOTIFIERS) \
+    $(wildcard include/config/PREEMPT_NONE) \
+    $(wildcard include/config/PREEMPT_VOLUNTARY) \
+    $(wildcard include/config/PREEMPT) \
   arch/x86/include/asm/preempt.h \
   include/linux/thread_info.h \
     $(wildcard include/config/THREAD_INFO_IN_TASK) \
-    $(wildcard include/config/GENERIC_ENTRY) \
     $(wildcard include/config/HAVE_ARCH_WITHIN_STACK_FRAMES) \
     $(wildcard include/config/HARDENED_USERCOPY) \
     $(wildcard include/config/SH) \
@@ -498,7 +503,6 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
   arch/x86/include/asm/qrwlock.h \
   include/asm-generic/qrwlock.h \
   include/linux/rwlock.h \
-    $(wildcard include/config/PREEMPT) \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/INLINE_SPIN_LOCK) \
     $(wildcard include/config/INLINE_SPIN_LOCK_BH) \
@@ -556,6 +560,7 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
   include/generated/bounds.h \
   include/linux/mm_types.h \
     $(wildcard include/config/HAVE_ALIGNED_STRUCT_PAGE) \
+    $(wildcard include/config/HUGETLB_PMD_PAGE_TABLE_SHARING) \
     $(wildcard include/config/USERFAULTFD) \
     $(wildcard include/config/ANON_VMA_NAME) \
     $(wildcard include/config/PER_VMA_LOCK) \
@@ -679,6 +684,7 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
   arch/x86/include/asm/x86_init.h \
   arch/x86/include/uapi/asm/bootparam.h \
   include/linux/screen_info.h \
+    $(wildcard include/config/PCI) \
   include/uapi/linux/screen_info.h \
   include/linux/apm_bios.h \
   include/uapi/linux/apm_bios.h \
@@ -821,8 +827,6 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/ARCH_HAS_PARANOID_L1D_FLUSH) \
     $(wildcard include/config/RV) \
     $(wildcard include/config/USER_EVENTS) \
-    $(wildcard include/config/PREEMPT_NONE) \
-    $(wildcard include/config/PREEMPT_VOLUNTARY) \
   include/uapi/linux/sched.h \
   include/linux/pid_types.h \
   include/linux/shm.h \
@@ -1026,6 +1030,12 @@ deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o := \
     $(wildcard include/config/HAVE_MOD_ARCH_SPECIFIC) \
     $(wildcard include/config/MODULES_USE_ELF_REL) \
     $(wildcard include/config/MODULES_USE_ELF_RELA) \
+  include/linux/proc_fs.h \
+    $(wildcard include/config/PROC_PID_ARCH_STATUS) \
+  include/linux/seq_file.h \
+  include/linux/string_helpers.h \
+  include/linux/ctype.h \
+  include/linux/string_choices.h \
 
 /home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o: $(deps_/home/bigfly/UNIX-labs/unix-lab-1/os-lab-3/kerneltsu.o)
 
